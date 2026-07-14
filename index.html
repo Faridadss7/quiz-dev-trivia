@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Trivia — Level Up Africa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── SPLASH SCREEN ──────────────────────────────────────────── -->
+  <div id="splash" class="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <p class="splash-eyebrow">Level Up Africa</p>
+      <h1 class="splash-title">Dev<span class="gradient-text">Trivia</span></h1>
+      <div class="splash-bar-track"><div id="splash-bar" class="splash-bar"></div></div>
+    </div>
+  </div>
+
+  <!-- ── HEADER ─────────────────────────────────────────────────── -->
+  <header class="top-bar" id="top-bar">
+    <span class="top-bar__logo">Dev Trivia</span>
+    <div class="theme-switcher" role="group" aria-label="Thème">
+      <button class="theme-btn active" data-theme="dark">Dark</button>
+      <button class="theme-btn" data-theme="light">Light</button>
+      <button class="theme-btn" data-theme="terminal">Terminal</button>
+    </div>
+  </header>
+
+  <!-- ── MAIN ───────────────────────────────────────────────────── -->
+  <main class="main-wrapper">
+
+    <!-- ── ÉCRAN ACCUEIL ──────────────────────────────────────── -->
+    <section id="screen-start" class="screen" aria-label="Accueil">
+      <div class="card start-card">
+
+        <div class="start-eyebrow">Level Up Africa</div>
+        <h1 class="start-title">Dev<br><span class="gradient-text">Trivia</span></h1>
+        <p class="start-sub">20 questions sur le code, le web et les fondamentaux tech.</p>
+
+        <!-- Meilleur score -->
+        <div id="best-score-banner" class="best-score-banner hidden">
+          Meilleur score &mdash; <strong id="best-score-value">—</strong><span class="score-denom">&thinsp;/ 20</span>
+        </div>
+
+        <!-- Champ nom -->
+        <div class="name-field">
+          <label class="name-label" for="player-name">Ton prénom</label>
+          <input
+            id="player-name"
+            class="name-input"
+            type="text"
+            placeholder="Ex : Kofi, Amara, Léa…"
+            maxlength="24"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        <!-- Règles -->
+        <ul class="rules-list">
+          <li>
+            <span class="rule-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+            </span>
+            <span>20 secondes par question</span>
+          </li>
+          <li>
+            <span class="rule-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20"><path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+            <span>Feedback immédiat sur chaque réponse</span>
+          </li>
+          <li>
+            <span class="rule-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 9h6M7 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span>Récapitulatif détaillé en fin de quiz</span>
+          </li>
+        </ul>
+
+        <!-- Historique -->
+        <div id="history-section" class="history-section hidden">
+          <p class="history-title">Tes dernières parties</p>
+          <ul id="history-list" class="history-list"></ul>
+        </div>
+
+        <button id="btn-start" class="btn-primary">Commencer</button>
+      </div>
+    </section>
+
+    <!-- ── ÉCRAN QUIZ ──────────────────────────────────────────── -->
+    <section id="screen-quiz" class="screen" aria-label="Quiz">
+
+      <div class="quiz-meta">
+        <div class="quiz-meta__left">
+          <span id="player-greeting" class="player-greeting hidden"></span>
+          <span id="question-counter" class="quiz-meta__counter">1 / 20</span>
+        </div>
+        <div id="streak-display" class="streak-pill hidden">
+          <span id="streak-count">0</span> série
+        </div>
+        <div id="timer-wrapper" aria-label="Temps restant">
+          <svg class="timer-ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle class="ring-bg" cx="22" cy="22" r="18"/>
+            <circle id="ring-progress" class="ring-fill" cx="22" cy="22" r="18"/>
+          </svg>
+          <span id="timer-text">20</span>
+        </div>
+      </div>
+
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <div id="progress-bar" class="progress-fill"></div>
+      </div>
+
+      <div class="quiz-card-wrapper" id="quiz-card-wrapper">
+        <div class="card quiz-card" id="quiz-card">
+          <p id="question-number-label" class="q-eyebrow">Question <span id="q-num">1</span></p>
+          <h2 id="question-text" class="question-text">Chargement…</h2>
+          <div id="options-grid" class="options-grid"></div>
+          <div id="feedback-box" class="feedback-box hidden" role="alert"></div>
+          <button id="btn-next" class="btn-primary hidden">Suivant</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── ÉCRAN RÉSULTATS ────────────────────────────────────── -->
+    <section id="screen-result" class="screen" aria-label="Résultats">
+      <div class="card result-card">
+
+        <p class="result-eyebrow">Résultat final</p>
+        <p id="result-player-name" class="result-player-name hidden"></p>
+        <h2 id="result-title" class="result-title">—</h2>
+        <p id="result-message" class="result-message">—</p>
+
+        <div class="score-block">
+          <span id="score-num" class="score-big">0</span>
+          <span class="score-denom">/ 20</span>
+        </div>
+
+        <div class="score-track" role="progressbar">
+          <div id="score-bar-fill" class="score-fill"></div>
+        </div>
+
+        <div id="new-record-badge" class="record-badge hidden">Nouveau record personnel</div>
+
+        <!-- Temps total -->
+        <div id="quiz-duration" class="quiz-duration hidden">
+          Temps total : <strong id="quiz-duration-value">—</strong>
+        </div>
+
+        <!-- Partage -->
+        <button id="btn-share" class="btn-secondary">Copier mon score</button>
+        <div id="share-toast" class="share-toast hidden" role="status">Score copié dans le presse-papier !</div>
+
+        <!-- Récap -->
+        <details id="recap-details" class="recap-details">
+          <summary>Voir le récapitulatif</summary>
+          <div class="recap-scroll">
+            <table id="recap-table" class="recap-table" aria-label="Récapitulatif des réponses">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Question</th>
+                  <th>Ta réponse</th>
+                  <th>Bonne réponse</th>
+                  <th>Temps</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="recap-tbody"></tbody>
+            </table>
+          </div>
+        </details>
+
+        <button id="btn-restart" class="btn-primary">Rejouer</button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
