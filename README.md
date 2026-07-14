@@ -84,9 +84,9 @@ quiz-dev-trivia/
 
 ## 👤 Auteur
 
-**[Ton nom]**  
+**[Yélognissè Babatoundé Farid]**  
 Étudiant L1 — IFRI  
-Encadrant : **Duvalier (Drakenarl)**  
+Encadrant : **Duvalier**  
 Projet : Level Up Africa — Juillet 2026
 
-🔗 **GitHub Pages :** `https://<ton-username>.github.io/dev-trivia-levelup`
+🔗 **GitHub Pages :** `https://faridadss7.github.io/dev-trivia-levelup`
