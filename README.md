@@ -89,4 +89,4 @@ quiz-dev-trivia/
 Encadrant : **Duvalier**  
 Projet : Level Up Africa — Juillet 2026
 
-🔗 **GitHub Pages :** `https://faridadss7.github.io/dev-trivia-levelup`
+🔗 **GitHub Pages :** `https://faridadss7.github.io/quiz-dev-trivia/
