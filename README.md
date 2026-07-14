@@ -84,7 +84,7 @@ quiz-dev-trivia/
 
 ## 👤 Auteur
 
-**[Yélognissè Babatoundé Farid]**  
+** Yélognissè Babatoundé Farid ADISSO **  
 Étudiant L1 — IFRI  
 Encadrant : **Duvalier**  
 Projet : Level Up Africa — Juillet 2026
